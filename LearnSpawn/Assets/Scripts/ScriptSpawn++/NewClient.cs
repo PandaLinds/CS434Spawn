@@ -7,6 +7,21 @@ public class NewClient : MonoBehaviour
     public NewEnemySpawner mSpawnerEnemy;
     public TownsPeopleSpawner mSpawnerTownsPeople;
     int peopleCnt = 0, enemyCnt = 0;
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("Trying to spawn Enemy");
+            mSpawnerEnemy.SpawnEnemies(GetEnemyReq());
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log("Trying to spawn People");
+            mSpawnerTownsPeople.SpawnTownsPeople(GetPeopleReq());
+        }
+    }
     
     public EnemyType GetEnemyReq ()
     {
@@ -32,7 +47,7 @@ public class NewClient : MonoBehaviour
         {
             return TownsPeopleType.Hero;
         } 
-        else if((peopleCnt % 3) == 1)
+        else if((enemyCnt % 3) == 1)
         {
             return TownsPeopleType.Jerk;
         } 
@@ -41,18 +56,5 @@ public class NewClient : MonoBehaviour
             return TownsPeopleType.Toast;
         }
     }
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Debug.Log("Trying to spawn Enemy");
-            mSpawnerEnemy.SpawnEnemies(GetEnemyReq());
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Debug.Log("Trying to spawn People");
-            mSpawnerTownsPeople.SpawnTownsPeople(GetPeopleReq());
-        }
-    }
+    
 }
